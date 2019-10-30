@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 步骤一，复制粘贴上面的头文件，必须是上面的格式-->
+
+<!-- 步骤二、以下开始配置，配置的时候要注意，mybatis的根元素节点是有顺序的，具体顺序可以百度或者查文档-->
+<configuration>
+
+    <!-- 步骤2.1 引入外部资源-->
+    <properties resource="database.properties"/>
+<!-- 以下可以设置映射级别等-->
+    <settings>
+        <setting name="autoMappingBehavior" value="FULL"/>
+    </settings>
+<!--    给pojo包下的类取别名，这样就可以不用输入类全名了-->
+    <typeAliases>
+        <package name="cn.edu.pojo" />
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- &lt;!&ndash;分页参数合理化 ，不可能到达一个不正确的页码如-1  超过总页数&ndash;&gt;-->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+    <!-- 步骤2.2 指定运行环境  一般就三个环境：开发环境development 测试环境test 生产环境product-->
+    <environments default="dev">
+        <!--   上面是制定默认的环境，下面是指定具体的环境-->
+        <environment id="dev">
+            <!--  事务管理此处采用JDBC的事务管理-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--   指定数据源，mybatis自带的是POOLED 也可以用tomcat自带的JNDI，但是默认POOLED-->
+            <dataSource type="POOLED">
+                <!--  设置property属性-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+        <!-- 下面还可以继续追加其他的开发环境-->
+    </environments>
+
+
+
+<!--映射接口文件目录，一般就是整个dao文件夹，如果不用射接口文件，就报错“找不到mapper”-->
+<mappers>
+<!--    这里的引用有两种方式，这种引用整个目录的方式最简单-->
+    <package name="cn.edu.dao"/>
+</mappers>
+
+</configuration>

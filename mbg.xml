@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--    本地数据库连接驱动的绝对路径-->
+    <!--    <classPathEntry location="F:\tomcat\apache-tomcat-8.0.43\lib\mysql-connector-java-8.0.11.jar"/>-->
+    <!--或者引入database.properties配置文件-->
+    <properties resource="database.properties"></properties>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <!--            是否去除自动生成的注释 true：是   false：否-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--        数据库连接参数-->
+        <!--        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"-->
+        <!--                        connectionURL="jdbc:mysql://localhost:3306/smbms?serverTimezone=UTC"-->
+        <!--                        userId="root"-->
+        <!--                        password="123456">-->
+        <!--        </jdbcConnection>-->
+
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}">
+            <!-- 这里面可以设置property属性，每一个property属性都设置到配置的Driver上 -->
+        </jdbcConnection>
+
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="cn.edu.pojo" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="cn.edu.dao" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.edu.dao" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--要生成的表tableName是数据库中的表-->
+        <!--        <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >-->
+        <!--            <property name="useActualColumnNames" value="true"/>-->
+        <!--            <generatedKey column="ID" sqlStatement="DB2" identity="true" />-->
+        <!--            <columnOverride column="DATE_FIELD" property="startDate" />-->
+        <!--            <ignoreColumn column="FRED" />-->
+        <!--            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
+        <!--        </table>-->
+
+
+<!--第二阶段项目生成表的信息-->
+        <table schema="DB2ADMIN" tableName="eduarticle" domainObjectName="EduArticle"/>
+        <table schema="DB2ADMIN" tableName="eduarticlecontent" domainObjectName="EduArticleContent"/>
+        <table schema="DB2ADMIN" tableName="educomment" domainObjectName="EduComment"/>
+        <table schema="DB2ADMIN" tableName="educourse" domainObjectName="EduCourse"/>
+        <table schema="DB2ADMIN" tableName="educoursefavorites" domainObjectName="EduCourseFavorites"/>
+        <table schema="DB2ADMIN" tableName="educoursekpoint" domainObjectName="EduCourseKPoint"/>
+        <table schema="DB2ADMIN" tableName="educoursenote" domainObjectName="EduCourseNote"/>
+        <table schema="DB2ADMIN" tableName="educoursestudyhistory" domainObjectName="EduCourseStudyHistory"/>
+        <table schema="DB2ADMIN" tableName="educoursesubject" domainObjectName="EduCourseSubject"/>
+        <table schema="DB2ADMIN" tableName="educourseteacher" domainObjectName="EduCourseTeacher"/>
+        <table schema="DB2ADMIN" tableName="eduemailsendhistory" domainObjectName="EduEmailSendHistory"/>
+        <table schema="DB2ADMIN" tableName="eduhelpmenu" domainObjectName="EduHelpMenu"/>
+        <table schema="DB2ADMIN" tableName="edumobilesendhistory" domainObjectName="EduMobileSendHistory"/>
+        <table schema="DB2ADMIN" tableName="edumsgreceive" domainObjectName="EduMsgReceive"/>
+        <table schema="DB2ADMIN" tableName="edumsgsystem" domainObjectName="EduMsgSystem"/>
+        <table schema="DB2ADMIN" tableName="edupraise" domainObjectName="EduPraise"/>
+        <table schema="DB2ADMIN" tableName="eduquestions" domainObjectName="Eduquestions"/>
+        <table schema="DB2ADMIN" tableName="eduquestionscomment" domainObjectName="EduQuestionsComment"/>
+        <table schema="DB2ADMIN" tableName="eduquestionstag" domainObjectName="EduQuestionsTag"/>
+        <table schema="DB2ADMIN" tableName="eduquestionstagrelation" domainObjectName="EduQuestionsTagRelation"/>
+        <table schema="DB2ADMIN" tableName="edustatisticscomputer" domainObjectName="EduStatisticsComputer"/>
+        <table schema="DB2ADMIN" tableName="edustatisticsday" domainObjectName="EduStatisticsDay"/>
+        <table schema="DB2ADMIN" tableName="eduteacher" domainObjectName="EduTeacher"/>
+        <table schema="DB2ADMIN" tableName="eduuser" domainObjectName="EduUser"/>
+        <table schema="DB2ADMIN" tableName="eduuserloginlog" domainObjectName="EduUserLoginLog"/>
+        <table schema="DB2ADMIN" tableName="eduwebsitecourse" domainObjectName="EduWebSiteCourse"/>
+        <table schema="DB2ADMIN" tableName="eduwebsitecoursedetail" domainObjectName="EduWebSiteCourseDetail"/>
+        <table schema="DB2ADMIN" tableName="eduwebsiteehcache" domainObjectName="EduWebSiteEhcache"/>
+        <table schema="DB2ADMIN" tableName="eduwebsiteimages" domainObjectName="EduWebSiteImages"/>
+        <table schema="DB2ADMIN" tableName="eduwebsiteimagestype" domainObjectName="EduWebSiteImagesType"/>
+        <table schema="DB2ADMIN" tableName="eduwebsitenavigate" domainObjectName="EduWebSiteNavigate"/>
+        <table schema="DB2ADMIN" tableName="eduwebsiteprofile" domainObjectName="EduWebSiteProfile"/>
+        <table schema="DB2ADMIN" tableName="sysfunction" domainObjectName="SysFunction"/>
+        <table schema="DB2ADMIN" tableName="sysloginlog" domainObjectName="SysLoginLog"/>
+        <table schema="DB2ADMIN" tableName="sysrole" domainObjectName="SysRole"/>
+        <table schema="DB2ADMIN" tableName="sysrolefunction" domainObjectName="SysRoleFunction"/>
+        <table schema="DB2ADMIN" tableName="syssubject" domainObjectName="Syssubject"/>
+        <table schema="DB2ADMIN" tableName="sysuser" domainObjectName="SysUser"/>
+
+
+    </context>
+</generatorConfiguration>
